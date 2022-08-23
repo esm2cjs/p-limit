@@ -1,4 +1,4 @@
-import Queue from 'yocto-queue';
+import Queue from '@esm2cjs/yocto-queue';
 
 export default function pLimit(concurrency) {
 	if (!((Number.isInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency > 0)) {

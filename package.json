@@ -1,17 +1,21 @@
 {
-	"name": "p-limit",
+	"name": "@esm2cjs/p-limit",
 	"version": "4.0.0",
-	"description": "Run multiple promise-returning & async functions with limited concurrency",
+	"description": "Run multiple promise-returning & async functions with limited concurrency. This is a fork of sindresorhus/p-limit, but with CommonJS support.",
 	"license": "MIT",
-	"repository": "sindresorhus/p-limit",
-	"funding": "https://github.com/sponsors/sindresorhus",
+	"repository": "esm2cjs/p-limit",
+	"funding": "https://github.com/sponsors/AlCalzone",
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "https://sindresorhus.com"
+		"name": "Dominic Griesel",
+		"email": "d.griesel@gmx.net"
 	},
-	"type": "module",
-	"exports": "./index.js",
+	"exports": {
+		".": {
+			"import": "./esm/index.js",
+			"require": "./cjs/index.js"
+		},
+		"./package.json": "./package.json"
+	},
 	"engines": {
 		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
@@ -19,8 +23,8 @@
 		"test": "xo && ava && tsd"
 	},
 	"files": [
-		"index.js",
-		"index.d.ts"
+		"cjs/",
+		"esm/"
 	],
 	"keywords": [
 		"promise",
@@ -40,7 +44,7 @@
 		"bluebird"
 	],
 	"dependencies": {
-		"yocto-queue": "^1.0.0"
+		"@esm2cjs/yocto-queue": "^1.0.0"
 	},
 	"devDependencies": {
 		"ava": "^3.15.0",
@@ -50,5 +54,31 @@
 		"time-span": "^5.0.0",
 		"tsd": "^0.17.0",
 		"xo": "^0.44.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "cjs/index.js",
+	"module": "esm/index.js",
+	"types": "esm/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"esm/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"cjs/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"*": [
+				"esm/*"
+			]
+		}
+	},
+	"xo": {
+		"ignores": [
+			"cjs",
+			"**/*.test-d.ts",
+			"**/*.d.ts"
+		]
 	}
 }
